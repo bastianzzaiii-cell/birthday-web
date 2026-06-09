@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+
+<!-- 🔥 INI PENTING BANGET BUAT HP -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Happy Birthday 💖</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500&display=swap" rel="stylesheet">
+
+<style>
+body {
+  margin: 0;
+  font-family: 'Poppins', sans-serif;
+  background: linear-gradient(135deg, #FFF3B0, #FFD6E0);
+  color: #555;
+}
+
+/* SECTION */
+section {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  text-align: center;
+  padding: 15px;
+}
+
+/* CARD */
+.card {
+  background: white;
+  padding: 20px;
+  border-radius: 20px;
+  box-shadow: 0 8px 15px rgba(0,0,0,0.1);
+  max-width: 90%;
+}
+
+/* TEXT RESPONSIVE */
+h1 {
+  font-size: 22px;
+}
+h2 {
+  font-size: 18px;
+}
+p {
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+/* BUTTON */
+button {
+  margin-top: 15px;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 20px;
+  background: #FFD6E0;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+/* FADE */
+.fade {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: 1s;
+}
+.fade.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* IMAGE */
+img {
+  width: 100%;
+  max-width: 200px;
+  border-radius: 15px;
+}
+
+/* BALLOON */
+.balloon {
+  width: 60px;
+  animation: float 3s infinite;
+}
+@keyframes float {
+  0% {transform: translateY(0);}
+  50% {transform: translateY(-15px);}
+  100% {transform: translateY(0);}
+}
+</style>
+</head>
+
+<body>
+
+<!-- 🎀 LANDING -->
+<section>
+  <div class="card fade">
+    <h1>🎀 Happy Birthday Piii 💖</h1>
+    <p>A little space made just for you ✨</p>
+    <button onclick="scrollToSection(1)">Open 💌</button>
+  </div>
+</section>
+
+<!-- 💌 MESSAGE -->
+<section>
+  <div class="card fade">
+    <p id="typing"></p>
+  </div>
+</section>
+
+<!-- 📸 GALERI -->
+<section>
+  <div class="card fade">
+    <h2>✌🤞Dari cewe babas for princess MA😍😍</h2>
+    <img src="hb.png">
+    <img src="pl.png">
+    <img src="mn.jpg">
+    <img src="https://imgur.com/a/SYQvfpe.png">
+    <img src="7.png">
+    <img src="l.png">
+    <p>awoakwoawokawokawka 😘😘😘👾🕷🕷🥶🥶🥶</p>
+  </div>
+</section>
+
+<!-- 🎂 WISH -->
+<section>
+  <div class="card fade">
+    <h2>🎂 Wishes</h2>
+    <p>💖 Semoga u n i always bahagia yap</p>
+    <p>🌟 Semoga semua mimpinya u juga tercapai</p>
+  </div>
+</section>
+
+<!-- 🎁 FUN -->
+<section>
+  <div class="card fade">
+    <h2>🎈 Click Me!</h2>
+    <img src="https://cdn-icons-png.flaticon.com/512/3468/3468373.png" class="balloon" onclick="alert('I LOVE U COUZZ 🥶😘😘😘💖')">
+  </div>
+</section>
+
+<!-- 🌙 CLOSING -->
+<section>
+  <div class="card fade">
+    <h2>🤍 Thank you for existing</h2>
+    <p>🌹🌹Stay as you are🌹💖</p>
+    <button onclick="replay()">🔁 Replay</button>
+  </div>
+</section>
+
+<script>
+// SCROLL
+function scrollToSection(n) {
+  document.querySelectorAll("section")[n].scrollIntoView({
+    behavior: 'smooth'
+  });
+}
+
+// FADE
+const fades = document.querySelectorAll('.fade');
+window.addEventListener('scroll', () => {
+  fades.forEach(el => {
+    const top = el.getBoundingClientRect().top;
+    if (top < window.innerHeight - 50) {
+      el.classList.add('show');
+    }
+  });
+});
+
+// TYPING
+const text = `Selamat ulang tahun, PIIIIIIIIIIIII 😍💖
+Selamat ulangtahunnnn yaaaaaaaaaaaaaaaaaaww 🥺😼💫
+
+Pantesan Juni itu bulannya cerah banget,
+soalnya yang ciptain nama-nama bulan kayaknya udah tau
+kalo kamu bakal lahir di bulan ini 👻✨
+
+Happy birthday, couzz 🎉💖
+Semoga u selalu bahagia, selalu kuat,
+dan semua hal baik selalu dateng kepada u yh 🤍
+
+Stay as you are 🥶🥶🥶🥶🥶
+Love u always, couzz 🫶🎂✨`;
+
+let i = 0;
+function typing() {
+  if (i < text.length) {
+    document.getElementById("typing").innerHTML += text.charAt(i);
+    i++;
+    setTimeout(typing, 25);
+  }
+}
+typing();
+
+// 🔥 REPLAY FIX (PASTI WORK)
+function replay(){
+  window.location.href = window.location.pathname;
+}
+</script>
+
+</body>
+</html>
