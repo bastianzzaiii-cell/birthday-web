@@ -2,13 +2,14 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-
-<!-- 🔥 INI PENTING BANGET BUAT HP -->
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <title>Happy Birthday 💖</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500&display=swap" rel="stylesheet">
+
+<!-- 🎇 CONFETTI -->
+<script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
 
 <style>
 body {
@@ -18,7 +19,6 @@ body {
   color: #555;
 }
 
-/* SECTION */
 section {
   min-height: 100vh;
   display: flex;
@@ -29,7 +29,6 @@ section {
   padding: 15px;
 }
 
-/* CARD */
 .card {
   background: white;
   padding: 20px;
@@ -38,19 +37,10 @@ section {
   max-width: 90%;
 }
 
-/* TEXT RESPONSIVE */
-h1 {
-  font-size: 22px;
-}
-h2 {
-  font-size: 18px;
-}
-p {
-  font-size: 14px;
-  line-height: 1.6;
-}
+h1 { font-size: 22px; }
+h2 { font-size: 18px; }
+p { font-size: 14px; line-height: 1.6; }
 
-/* BUTTON */
 button {
   margin-top: 15px;
   padding: 10px 20px;
@@ -61,7 +51,6 @@ button {
   font-size: 14px;
 }
 
-/* FADE */
 .fade {
   opacity: 0;
   transform: translateY(20px);
@@ -72,14 +61,19 @@ button {
   transform: translateY(0);
 }
 
-/* IMAGE */
 img {
   width: 100%;
   max-width: 200px;
   border-radius: 15px;
 }
 
-/* BALLOON */
+video {
+  width: 100%;
+  max-width: 250px;
+  border-radius: 15px;
+  margin: 10px 0;
+}
+
 .balloon {
   width: 60px;
   animation: float 3s infinite;
@@ -93,6 +87,11 @@ img {
 </head>
 
 <body>
+
+<!-- 🎵 AUDIO -->
+<audio id="bgMusic" autoplay loop>
+  <source src="ne.mp3" type="audio/mpeg">
+</audio>
 
 <!-- 🎀 LANDING -->
 <section>
@@ -128,6 +127,52 @@ img {
   </div>
 </section>
 
+<!-- 🎥 VIDEO SECTION (DITAMBAHIN) -->
+<section>
+  <div class="card fade">
+    <h2>🎥 heheheeh i dapet di ig your pict ✌✌✌✌🤞🤞🤞✌✌✌✌🤞</h2>
+
+    <video class="vid" controls>
+      <source src="a.mp4" type="video/mp4">
+    </video>
+
+    <video class="vid" controls>
+      <source src="b.mp4" type="video/mp4">
+    </video>
+
+    <video class="vid" controls>
+      <source src="c.mp4" type="video/mp4">
+    </video>
+
+    <video class="vid" controls>
+      <source src="d.mp4" type="video/mp4">
+    </video>
+
+    <video class="vid" controls>
+      <source src="e.mp4" type="video/mp4">
+    </video>
+
+    <video class="vid" controls>
+      <source src="f.mp4" type="video/mp4">
+    </video>
+
+  </div>
+</section>
+
+<!-- ⏳ LIFE COUNTER -->
+<section>
+  <div class="card fade">
+    <h2>⏳ Your Life Stats</h2>
+
+    <p>🎂 Umur: <span id="age"></span></p>
+    <p>📅 Hari hidup: <span id="days"></span></p>
+    <p>💓 Detak jantung: <span id="heart"></span></p>
+    <p>🌬 Nafas: <span id="breath"></span></p>
+
+    <p>🤍 CIEEEEE DAH WAKTUNYA BUAT KTP YAHHHHH😜😋😋</p>
+  </div>
+</section>
+
 <!-- 🎂 WISH -->
 <section>
   <div class="card fade">
@@ -145,6 +190,19 @@ img {
   </div>
 </section>
 
+<section>
+  <div class="card fade">
+    <h2>💖 Catch your Love</h2>
+    <p>Tangkap hati yang jatuh yaccc 😳</p>
+
+    <h3>Score: <span id="score">0</span></h3>
+
+    <div id="gameArea" style="position:relative;height:300px;background:#FFF0F5;border-radius:15px;overflow:hidden;"></div>
+
+    <button onclick="startGame()">Start 🥶</button>
+  </div>
+</section>
+
 <!-- 🌙 CLOSING -->
 <section>
   <div class="card fade">
@@ -155,14 +213,12 @@ img {
 </section>
 
 <script>
-// SCROLL
 function scrollToSection(n) {
   document.querySelectorAll("section")[n].scrollIntoView({
     behavior: 'smooth'
   });
 }
 
-// FADE
 const fades = document.querySelectorAll('.fade');
 window.addEventListener('scroll', () => {
   fades.forEach(el => {
@@ -173,7 +229,6 @@ window.addEventListener('scroll', () => {
   });
 });
 
-// TYPING
 const text = `Selamat ulang tahun, PIIIIIIIIIIIII 😍💖
 Selamat ulangtahunnnn yaaaaaaaaaaaaaaaaaaww 🥺😼💫
 
@@ -198,10 +253,121 @@ function typing() {
 }
 typing();
 
-// 🔥 REPLAY FIX (PASTI WORK)
 function replay(){
   window.location.href = window.location.pathname;
 }
+
+const music = document.getElementById("bgMusic");
+const videos = document.querySelectorAll(".vid");
+
+videos.forEach(video => {
+  video.addEventListener("play", () => {
+    music.pause();
+  });
+
+  video.addEventListener("pause", () => {
+    music.play();
+  });
+
+  video.addEventListener("ended", () => {
+    music.play();
+  });
+});
+
+function lifeStats(){
+
+  // 🎂 GANTI TANGGAL LAHIR
+  const birth = new Date("2009-06-11"); // <-- GANTI!!!
+
+  const now = new Date();
+
+  const diff = now - birth;
+
+  const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+  const years = Math.floor(days / 365);
+
+  // 💓 detak jantung (±80 bpm)
+  const heart = Math.floor(diff / 1000 * 1.2);
+
+  // 🌬 napas (±16 per menit)
+  const breath = Math.floor(diff / 1000 * 0.27);
+
+  document.getElementById("age").innerText = years + " tahun";
+  document.getElementById("days").innerText = days.toLocaleString() + " hari";
+  document.getElementById("heart").innerText = heart.toLocaleString() + " kali";
+  document.getElementById("breath").innerText = breath.toLocaleString() + " kali";
+}
+
+lifeStats();
+
+let score = 0;
+
+function startGame(){
+  score = 0;
+  document.getElementById("score").innerText = score;
+
+  const game = document.getElementById("gameArea");
+  game.innerHTML = "";
+
+  let interval = setInterval(() => {
+    const heart = document.createElement("div");
+
+    heart.innerText = "💖";
+    heart.style.position = "absolute";
+    heart.style.left = Math.random() * 90 + "%";
+    heart.style.top = "0%";
+    heart.style.fontSize = "30px";
+    heart.style.cursor = "pointer";
+
+    heart.onclick = () => {
+      score++;
+      document.getElementById("score").innerText = score;
+      heart.remove();
+    };
+
+    game.appendChild(heart);
+
+    let move = setInterval(() => {
+      let top = parseFloat(heart.style.top);
+      if(top > 100){
+        heart.remove();
+        clearInterval(move);
+      } else {
+        heart.style.top = top + 1 + "%";
+      }
+    }, 50);
+
+  }, 800);
+
+  setTimeout(() => {
+    clearInterval(interval);
+    alert("💖 Kamu dapet " + score + " love!");
+  }, 15000);
+}
+
+window.onload = () => {
+  const duration = 3 * 1000;
+  const end = Date.now() + duration;
+
+  (function frame() {
+    confetti({
+      particleCount: 5,
+      angle: 60,
+      spread: 55,
+      origin: { x: 0 }
+    });
+    confetti({
+      particleCount: 5,
+      angle: 120,
+      spread: 55,
+      origin: { x: 1 }
+    });
+
+    if (Date.now() < end) {
+      requestAnimationFrame(frame);
+    }
+  })();
+};
 </script>
 
 </body>
